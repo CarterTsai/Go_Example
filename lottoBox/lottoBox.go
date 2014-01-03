@@ -6,11 +6,12 @@ import (
     "time"
 )
 
-type ListBox  struct{
+type ListBox struct{
     list []byte
     count byte
 }
-type LottoBox  struct{
+
+type LottoBox struct{
     num [49]byte
     count byte
     last_num byte
@@ -30,7 +31,7 @@ func (box *LottoBox) pop(ball_num byte) byte {
     return tmp;
 }
 
-func (box *LottoBox) fillbox() bool { 
+func (box *LottoBox) fillbox() bool {
     // put ball in to LottoBox
     box.count = 0
     for i:=1 ; i<=49; i++ {
@@ -39,7 +40,8 @@ func (box *LottoBox) fillbox() bool {
     return true;
 }
 
-func (box *LottoBox) drawnbox(num int, myList *ListBox) { 
+func (box *LottoBox) drawnbox(num int, myList *ListBox) {
+    box.fillbox()
     for i:=0; i<num; i++ {
         tmp := box.pop(byte(rand.Intn(49)+1))
         for tmp == 0 {
@@ -55,22 +57,18 @@ func msg(msg string) {
 }
 
 func main() {
-    var myList ListBox;
-    myList.count = 0
-    myList.list = make([]byte, 102, 102)
+    myList := ListBox { count: 0, list : make([]byte, 102, 102)}
+
     box := new(LottoBox)
     rand.Seed(time.Now().Unix())
 
-    box.fillbox()
-
     msg("Lotto Go!\n")
+
     box.drawnbox(49, &myList)
 
-    box.fillbox()
     box.pop(box.last_num)
     box.drawnbox(48, &myList)
 
-    box.fillbox()
     box.pop(box.last_num)
     box.drawnbox(5, &myList)
 
