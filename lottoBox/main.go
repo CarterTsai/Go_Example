@@ -1,7 +1,7 @@
 package main
 
 import (
-    "./lotto"
+    . "./lotto"
     "fmt"
     "math/rand"
     "time"
@@ -12,9 +12,9 @@ func msg(msg string) {
 }
 
 func main() {
-    myList := lotto.ListBox { Count: 0, List : make([]byte, 102, 102)}
+    myList := ListBox { Count: 0, List : make([]byte, 102, 102)}
 
-    box := new(lotto.LottoBox)
+    box := new(LottoBox)
     rand.Seed(time.Now().Unix())
 
     msg("Lotto Go!\n")
