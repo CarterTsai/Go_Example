@@ -15,6 +15,9 @@ type LottoBox struct{
     Last_num byte
 }
 
+func init() {
+}
+
 func (box *LottoBox) Push(ball_num byte) bool {
     box.Num[box.Count] = ball_num
     box.Count++
