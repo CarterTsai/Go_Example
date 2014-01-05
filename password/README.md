@@ -26,8 +26,7 @@ $> go get -u launchpad.net/gocheck
 3. Testing  
 
 ```
-$> cd test
-$> go test
+$>  make 
 ```
 
 4. Benchmarks
